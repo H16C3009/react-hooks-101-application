@@ -3,6 +3,7 @@ import React, { useReducer, useState } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import reducer from '../reducers'
+import Event from './Event';
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, [])
@@ -44,13 +45,18 @@ const App = () => {
 
       <h4>イベント一覧</h4>
       <table className="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Title</th>
-          <th scope="col">Body</th>
-        </tr>
-      </thead>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          { state.map((event, index) => 
+            (<Event key={index} event={event} dispatch={dispatch}/>)) }
+        </tbody>
       </table>
     </div>
   );
